@@ -5,29 +5,19 @@ from typing import Iterable, Sequence
 
 def load_signal_csv(path: Path) -> list[float]:
     
-    filename = "C:\Users\amtha\myrepository\signal.csv"
     data: list[float] = []
-
-    with open(filename, newline='') as csvfile:
-    reader = csv.reader(csvfile)
-    for row in reader:
-      data.append(float(row[0]))
-
-    """
-    TODO:
-      - Validate that path exists and is a file; else raise FileNotFoundError
-      - Read rows; parse as float; collect into list
-      - Use try/except to catch ValueError and log it (then re-raise)
-    """
-    # TODO: implement
-    return []
+    with open(path, newline='') as csvfile:
+            reader = csv.reader(csvfile)
+            for row in reader:
+                try:
+                    data.append(float(row[0]))
+                except ValueError as e:
+                    logging.exception(f"Failed to convert value '{row[0]}' to float")
+                    raise
+    return data
 
 def save_features_csv(path: Path, rows: Iterable[Sequence[float]]) -> None:
-    """
-    Save a CSV with header: rms,zero_crossings,peak_to_peak,mad
-    TODO:
-      - Ensure parent dir exists (mkdir parents=True, exist_ok=True)
-      - Write header and rows via csv.writer
-    """
-    # TODO: implement
-    pass
+     with open(path, mode='w', newline='') as csvfile:
+        writer = csv.writer(csvfile)
+        writer.writerow(["rms", "zero_crossings", "peak_to_peak", "mad"])  # header
+        writer.writerows(rows)

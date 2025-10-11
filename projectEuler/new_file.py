@@ -85,29 +85,6 @@ product=data_set[0][0]*data_set[0][1]*data_set[0][2]
 print(product)
 
             
-#12
-
-import math
-
-def divisors(num):
-    count=0
-    for i in range(1,int(math.sqrt(num))+1):
-        if num%i==0:
-            if i==num:
-                count+=1
-            else:
-                count+=2
-    return count
-
-
-num = 1
-i=2
-
-while divisors(num)<500:
-    num=num+i
-    i+=1
-
-print(num)
 
 #48
 s=0
@@ -131,41 +108,7 @@ while True:
 
 print(i+3)
 
-#5
-x=1
-div_list=[]
-while True:
-    if all(x%i==0 for i in [11,13,17,19]):
-        if all(x%j==0 for j in [14,16,18,20]):
-            break
-        
-    x+=1
 
-print(x)
-
-#10
-import math
-
-def is_prime(x):
-    if x<2:
-        return False
-    for i in range(2,int(math.sqrt(x))+1):
-        if x%i==0:
-            return False
-    else:
-        return True
-
-
-prime_list=[]
-
-n=1 
-
-while n<2000000:
-    if is_prime(n)==True:
-        prime_list.append(n)
-    n+=1
-
-print(sum(prime_list))
 
 #14
 p=0
